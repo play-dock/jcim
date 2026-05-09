@@ -80,7 +80,7 @@ function EditProfile() {
       </div>
 
       <div className="mt-6 grid md:grid-cols-2 gap-4">
-        <Field label="পূর্ণ নাম" v={form.full_name} on={(v) => setForm({ ...form, full_name: v })} />
+        <Field label="পূর্ণ নাম" v={form.full_name} on={(v: string) => setForm({ ...form, full_name: v })} />
         <Field label="পেশা" v={form.profession} on={(v) => setForm({ ...form, profession: v })} />
         <Field label="ঠিকানা" v={form.location} on={(v) => setForm({ ...form, location: v })} />
         <Field label="ফোন" v={form.phone} on={(v) => setForm({ ...form, phone: v })} />
