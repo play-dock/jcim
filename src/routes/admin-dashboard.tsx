@@ -2,7 +2,7 @@ import { createFileRoute, Outlet, Link, redirect, useRouterState } from "@tansta
 import { useAuth } from "@/lib/auth-context";
 import {
   LayoutDashboard, Users, Newspaper, Calendar, ShieldCheck, MessageSquare,
-  LogOut, Home, Vote,
+  LogOut, Home, Vote, Crown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
