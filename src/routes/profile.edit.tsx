@@ -81,14 +81,14 @@ function EditProfile() {
 
       <div className="mt-6 grid md:grid-cols-2 gap-4">
         <Field label="পূর্ণ নাম" v={form.full_name} on={(v: string) => setForm({ ...form, full_name: v })} />
-        <Field label="পেশা" v={form.profession} on={(v) => setForm({ ...form, profession: v })} />
-        <Field label="ঠিকানা" v={form.location} on={(v) => setForm({ ...form, location: v })} />
-        <Field label="ফোন" v={form.phone} on={(v) => setForm({ ...form, phone: v })} />
-        <Field label="জন্ম তারিখ" type="date" v={form.date_of_birth} on={(v) => setForm({ ...form, date_of_birth: v })} />
-        <Field label="লিঙ্গ" v={form.gender} on={(v) => setForm({ ...form, gender: v })} />
-        <Field label="ওয়েবসাইট" v={form.website} on={(v) => setForm({ ...form, website: v })} />
-        <Field label="ফেসবুক" v={form.facebook_url} on={(v) => setForm({ ...form, facebook_url: v })} />
-        <Field label="টুইটার" v={form.twitter_url} on={(v) => setForm({ ...form, twitter_url: v })} />
+        <Field label="পেশা" v={form.profession} on={(v: string) => setForm({ ...form, profession: v })} />
+        <Field label="ঠিকানা" v={form.location} on={(v: string) => setForm({ ...form, location: v })} />
+        <Field label="ফোন" v={form.phone} on={(v: string) => setForm({ ...form, phone: v })} />
+        <Field label="জন্ম তারিখ" type="date" v={form.date_of_birth} on={(v: string) => setForm({ ...form, date_of_birth: v })} />
+        <Field label="লিঙ্গ" v={form.gender} on={(v: string) => setForm({ ...form, gender: v })} />
+        <Field label="ওয়েবসাইট" v={form.website} on={(v: string) => setForm({ ...form, website: v })} />
+        <Field label="ফেসবুক" v={form.facebook_url} on={(v: string) => setForm({ ...form, facebook_url: v })} />
+        <Field label="টুইটার" v={form.twitter_url} on={(v: string) => setForm({ ...form, twitter_url: v })} />
       </div>
 
       <div className="mt-4">
