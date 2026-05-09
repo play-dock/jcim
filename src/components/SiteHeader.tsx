@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X, ShieldCheck, LogIn, LogOut } from "lucide-react";
+import { Menu, X, ShieldCheck, LogIn, LogOut, User } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth-context";
@@ -67,6 +67,11 @@ export function SiteHeader() {
                   </Link>
                 </Button>
               )}
+              <Button asChild size="sm" variant="ghost">
+                <Link to="/profile/$userId" params={{ userId: user.id }}>
+                  <User className="size-4 mr-1" /> প্রোফাইল
+                </Link>
+              </Button>
               <Button size="sm" variant="ghost" onClick={() => signOut()}>
                 <LogOut className="size-4 mr-1" /> লগআউট
               </Button>

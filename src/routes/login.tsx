@@ -47,12 +47,20 @@ function LoginPage() {
     }
     setBusy(true);
     const { error } = await signUp(su.email, su.password, su.full_name);
-    setBusy(false);
     if (error) {
+      setBusy(false);
       toast.error(error);
       return;
     }
-    toast.success("নিবন্ধন সম্পন্ন! ইমেইল যাচাই করুন বা সরাসরি লগইন করুন।");
+    // Auto-confirm enabled → sign in immediately
+    const { error: liErr } = await signIn(su.email, su.password);
+    setBusy(false);
+    if (liErr) {
+      toast.success("নিবন্ধন সম্পন্ন! এখন লগইন করুন।");
+      return;
+    }
+    toast.success("স্বাগতম!");
+    navigate({ to: "/" });
   };
 
   return (

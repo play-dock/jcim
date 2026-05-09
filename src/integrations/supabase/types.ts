@@ -77,6 +77,54 @@ export type Database = {
         }
         Relationships: []
       }
+      leadership: {
+        Row: {
+          active: boolean
+          bio: string | null
+          created_at: string
+          display_order: number
+          email: string | null
+          facebook_url: string | null
+          id: string
+          name: string
+          phone: string | null
+          photo_url: string | null
+          role: string
+          twitter_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          bio?: string | null
+          created_at?: string
+          display_order?: number
+          email?: string | null
+          facebook_url?: string | null
+          id?: string
+          name: string
+          phone?: string | null
+          photo_url?: string | null
+          role: string
+          twitter_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          bio?: string | null
+          created_at?: string
+          display_order?: number
+          email?: string | null
+          facebook_url?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          photo_url?: string | null
+          role?: string
+          twitter_url?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       members: {
         Row: {
           created_at: string
@@ -259,24 +307,57 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          bio: string | null
+          cover_url: string | null
           created_at: string
+          date_of_birth: string | null
           email: string | null
+          facebook_url: string | null
           full_name: string | null
+          gender: string | null
           id: string
+          location: string | null
+          phone: string | null
+          profession: string | null
+          twitter_url: string | null
+          updated_at: string
+          website: string | null
         }
         Insert: {
           avatar_url?: string | null
+          bio?: string | null
+          cover_url?: string | null
           created_at?: string
+          date_of_birth?: string | null
           email?: string | null
+          facebook_url?: string | null
           full_name?: string | null
+          gender?: string | null
           id: string
+          location?: string | null
+          phone?: string | null
+          profession?: string | null
+          twitter_url?: string | null
+          updated_at?: string
+          website?: string | null
         }
         Update: {
           avatar_url?: string | null
+          bio?: string | null
+          cover_url?: string | null
           created_at?: string
+          date_of_birth?: string | null
           email?: string | null
+          facebook_url?: string | null
           full_name?: string | null
+          gender?: string | null
           id?: string
+          location?: string | null
+          phone?: string | null
+          profession?: string | null
+          twitter_url?: string | null
+          updated_at?: string
+          website?: string | null
         }
         Relationships: []
       }

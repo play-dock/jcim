@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Crown, Users } from "lucide-react";
+import { Crown, Users, Facebook, Twitter, Mail, Phone } from "lucide-react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import founderImg from "@/assets/founder.jpg";
 
 export const Route = createFileRoute("/leadership")({
@@ -20,6 +22,13 @@ const districts = [
 ];
 
 function LeadershipPage() {
+  const [leaders, setLeaders] = useState<any[]>([]);
+  useEffect(() => {
+    supabase.from("leadership").select("*").eq("active", true).order("display_order").then(({ data }) => {
+      setLeaders(data ?? []);
+    });
+  }, []);
+
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="text-center max-w-2xl mx-auto">
@@ -53,13 +62,48 @@ function LeadershipPage() {
           <p className="mt-4 text-foreground/80 leading-relaxed">
             জুলাই সনদ বাস্তবায়ন আন্দোলনের প্রতিষ্ঠাতা ও প্রধান আহ্বায়ক। জুলাই বিপ্লবের সম্মুখসারির
             একজন সংগঠক হিসেবে দীর্ঘদিন ধরে গণতান্ত্রিক অধিকার ও সামাজিক ন্যায়বিচারের পক্ষে কাজ করছেন।
-            তার নেতৃত্বে আজ এই আন্দোলন ৬৪ জেলায় বিস্তৃত।
           </p>
           <blockquote className="mt-5 border-l-4 border-primary pl-4 italic text-foreground/90">
             "আমরা শুধু সনদ চাই না — আমরা চাই এমন এক বাংলাদেশ যেখানে প্রতিটি নাগরিকের কণ্ঠস্বর শোনা হবে।"
           </blockquote>
         </div>
       </div>
+
+      {/* Dynamic leaders */}
+      {leaders.length > 0 && (
+        <div className="mt-24">
+          <div className="flex items-center gap-3 mb-6">
+            <Crown className="size-6 text-primary" />
+            <h2 className="font-display text-3xl md:text-4xl font-black">কেন্দ্রীয় নেতৃবৃন্দ</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {leaders.map((l) => (
+              <div key={l.id} className="rounded-xl border border-border bg-card overflow-hidden hover:border-primary transition group">
+                <div className="aspect-[4/5] bg-secondary relative overflow-hidden">
+                  {l.photo_url ? (
+                    <img src={l.photo_url} alt={l.name} className="w-full h-full object-cover group-hover:scale-105 transition" loading="lazy" />
+                  ) : (
+                    <div className="w-full h-full grid place-items-center text-6xl font-display font-black text-muted-foreground">
+                      {l.name?.[0]}
+                    </div>
+                  )}
+                </div>
+                <div className="p-5">
+                  <div className="text-[11px] uppercase tracking-widest text-primary">{l.role}</div>
+                  <h3 className="mt-1 font-display text-xl font-black">{l.name}</h3>
+                  {l.bio && <p className="mt-2 text-sm text-muted-foreground line-clamp-3">{l.bio}</p>}
+                  <div className="mt-3 flex items-center gap-3 text-muted-foreground">
+                    {l.facebook_url && <a href={l.facebook_url} target="_blank" rel="noreferrer" className="hover:text-primary"><Facebook className="size-4" /></a>}
+                    {l.twitter_url && <a href={l.twitter_url} target="_blank" rel="noreferrer" className="hover:text-primary"><Twitter className="size-4" /></a>}
+                    {l.email && <a href={`mailto:${l.email}`} className="hover:text-primary"><Mail className="size-4" /></a>}
+                    {l.phone && <a href={`tel:${l.phone}`} className="hover:text-primary"><Phone className="size-4" /></a>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Districts */}
       <div className="mt-24">
@@ -68,7 +112,7 @@ function LeadershipPage() {
           <h2 className="font-display text-3xl md:text-4xl font-black">জেলা কমিটি</h2>
         </div>
         <p className="text-muted-foreground max-w-2xl">
-          আমাদের আন্দোলন বাংলাদেশের প্রতিটি জেলায় ছড়িয়ে রয়েছে। নিচে কয়েকটি সক্রিয় জেলা কমিটির তালিকা।
+          আমাদের আন্দোলন বাংলাদেশের প্রতিটি জেলায় ছড়িয়ে রয়েছে।
         </p>
         <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
           {districts.map((d) => (
