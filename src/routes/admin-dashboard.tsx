@@ -56,6 +56,7 @@ function AdminLayout() {
   const items = [
     { to: "/admin-dashboard", label: "ওভারভিউ", icon: LayoutDashboard, show: true, exact: true },
     { to: "/admin-dashboard/members", label: "সদস্য", icon: Users, show: hasPermission("manage_members") || hasPermission("approve_registrations") },
+    { to: "/admin-dashboard/leadership", label: "নেতৃত্ব", icon: Crown, show: isStaff },
     { to: "/admin-dashboard/news", label: "সংবাদ", icon: Newspaper, show: hasPermission("manage_news") },
     { to: "/admin-dashboard/events", label: "ইভেন্ট", icon: Calendar, show: hasPermission("manage_events") },
     { to: "/admin-dashboard/polls", label: "জনমত", icon: Vote, show: isSuperAdmin },
