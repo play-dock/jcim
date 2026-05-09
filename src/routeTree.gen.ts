@@ -20,11 +20,13 @@ import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminDashboardIndexRouteImport } from './routes/admin-dashboard.index'
+import { Route as ProfileUserIdRouteImport } from './routes/profile.$userId'
 import { Route as AdminDashboardPollsRouteImport } from './routes/admin-dashboard.polls'
 import { Route as AdminDashboardNewsRouteImport } from './routes/admin-dashboard.news'
 import { Route as AdminDashboardModeratorsRouteImport } from './routes/admin-dashboard.moderators'
 import { Route as AdminDashboardMessagesRouteImport } from './routes/admin-dashboard.messages'
 import { Route as AdminDashboardMembersRouteImport } from './routes/admin-dashboard.members'
+import { Route as AdminDashboardLeadershipRouteImport } from './routes/admin-dashboard.leadership'
 import { Route as AdminDashboardEventsRouteImport } from './routes/admin-dashboard.events'
 
 const PollRoute = PollRouteImport.update({
@@ -82,6 +84,11 @@ const AdminDashboardIndexRoute = AdminDashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminDashboardRoute,
 } as any)
+const ProfileUserIdRoute = ProfileUserIdRouteImport.update({
+  id: '/profile/$userId',
+  path: '/profile/$userId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminDashboardPollsRoute = AdminDashboardPollsRouteImport.update({
   id: '/polls',
   path: '/polls',
@@ -108,6 +115,12 @@ const AdminDashboardMembersRoute = AdminDashboardMembersRouteImport.update({
   path: '/members',
   getParentRoute: () => AdminDashboardRoute,
 } as any)
+const AdminDashboardLeadershipRoute =
+  AdminDashboardLeadershipRouteImport.update({
+    id: '/leadership',
+    path: '/leadership',
+    getParentRoute: () => AdminDashboardRoute,
+  } as any)
 const AdminDashboardEventsRoute = AdminDashboardEventsRouteImport.update({
   id: '/events',
   path: '/events',
@@ -126,11 +139,13 @@ export interface FileRoutesByFullPath {
   '/news': typeof NewsRoute
   '/poll': typeof PollRoute
   '/admin-dashboard/events': typeof AdminDashboardEventsRoute
+  '/admin-dashboard/leadership': typeof AdminDashboardLeadershipRoute
   '/admin-dashboard/members': typeof AdminDashboardMembersRoute
   '/admin-dashboard/messages': typeof AdminDashboardMessagesRoute
   '/admin-dashboard/moderators': typeof AdminDashboardModeratorsRoute
   '/admin-dashboard/news': typeof AdminDashboardNewsRoute
   '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
+  '/profile/$userId': typeof ProfileUserIdRoute
   '/admin-dashboard/': typeof AdminDashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -144,11 +159,13 @@ export interface FileRoutesByTo {
   '/news': typeof NewsRoute
   '/poll': typeof PollRoute
   '/admin-dashboard/events': typeof AdminDashboardEventsRoute
+  '/admin-dashboard/leadership': typeof AdminDashboardLeadershipRoute
   '/admin-dashboard/members': typeof AdminDashboardMembersRoute
   '/admin-dashboard/messages': typeof AdminDashboardMessagesRoute
   '/admin-dashboard/moderators': typeof AdminDashboardModeratorsRoute
   '/admin-dashboard/news': typeof AdminDashboardNewsRoute
   '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
+  '/profile/$userId': typeof ProfileUserIdRoute
   '/admin-dashboard': typeof AdminDashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -164,11 +181,13 @@ export interface FileRoutesById {
   '/news': typeof NewsRoute
   '/poll': typeof PollRoute
   '/admin-dashboard/events': typeof AdminDashboardEventsRoute
+  '/admin-dashboard/leadership': typeof AdminDashboardLeadershipRoute
   '/admin-dashboard/members': typeof AdminDashboardMembersRoute
   '/admin-dashboard/messages': typeof AdminDashboardMessagesRoute
   '/admin-dashboard/moderators': typeof AdminDashboardModeratorsRoute
   '/admin-dashboard/news': typeof AdminDashboardNewsRoute
   '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
+  '/profile/$userId': typeof ProfileUserIdRoute
   '/admin-dashboard/': typeof AdminDashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -185,11 +204,13 @@ export interface FileRouteTypes {
     | '/news'
     | '/poll'
     | '/admin-dashboard/events'
+    | '/admin-dashboard/leadership'
     | '/admin-dashboard/members'
     | '/admin-dashboard/messages'
     | '/admin-dashboard/moderators'
     | '/admin-dashboard/news'
     | '/admin-dashboard/polls'
+    | '/profile/$userId'
     | '/admin-dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -203,11 +224,13 @@ export interface FileRouteTypes {
     | '/news'
     | '/poll'
     | '/admin-dashboard/events'
+    | '/admin-dashboard/leadership'
     | '/admin-dashboard/members'
     | '/admin-dashboard/messages'
     | '/admin-dashboard/moderators'
     | '/admin-dashboard/news'
     | '/admin-dashboard/polls'
+    | '/profile/$userId'
     | '/admin-dashboard'
   id:
     | '__root__'
@@ -222,11 +245,13 @@ export interface FileRouteTypes {
     | '/news'
     | '/poll'
     | '/admin-dashboard/events'
+    | '/admin-dashboard/leadership'
     | '/admin-dashboard/members'
     | '/admin-dashboard/messages'
     | '/admin-dashboard/moderators'
     | '/admin-dashboard/news'
     | '/admin-dashboard/polls'
+    | '/profile/$userId'
     | '/admin-dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -241,6 +266,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   NewsRoute: typeof NewsRoute
   PollRoute: typeof PollRoute
+  ProfileUserIdRoute: typeof ProfileUserIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -322,6 +348,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminDashboardIndexRouteImport
       parentRoute: typeof AdminDashboardRoute
     }
+    '/profile/$userId': {
+      id: '/profile/$userId'
+      path: '/profile/$userId'
+      fullPath: '/profile/$userId'
+      preLoaderRoute: typeof ProfileUserIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin-dashboard/polls': {
       id: '/admin-dashboard/polls'
       path: '/polls'
@@ -357,6 +390,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminDashboardMembersRouteImport
       parentRoute: typeof AdminDashboardRoute
     }
+    '/admin-dashboard/leadership': {
+      id: '/admin-dashboard/leadership'
+      path: '/leadership'
+      fullPath: '/admin-dashboard/leadership'
+      preLoaderRoute: typeof AdminDashboardLeadershipRouteImport
+      parentRoute: typeof AdminDashboardRoute
+    }
     '/admin-dashboard/events': {
       id: '/admin-dashboard/events'
       path: '/events'
@@ -369,6 +409,7 @@ declare module '@tanstack/react-router' {
 
 interface AdminDashboardRouteChildren {
   AdminDashboardEventsRoute: typeof AdminDashboardEventsRoute
+  AdminDashboardLeadershipRoute: typeof AdminDashboardLeadershipRoute
   AdminDashboardMembersRoute: typeof AdminDashboardMembersRoute
   AdminDashboardMessagesRoute: typeof AdminDashboardMessagesRoute
   AdminDashboardModeratorsRoute: typeof AdminDashboardModeratorsRoute
@@ -379,6 +420,7 @@ interface AdminDashboardRouteChildren {
 
 const AdminDashboardRouteChildren: AdminDashboardRouteChildren = {
   AdminDashboardEventsRoute: AdminDashboardEventsRoute,
+  AdminDashboardLeadershipRoute: AdminDashboardLeadershipRoute,
   AdminDashboardMembersRoute: AdminDashboardMembersRoute,
   AdminDashboardMessagesRoute: AdminDashboardMessagesRoute,
   AdminDashboardModeratorsRoute: AdminDashboardModeratorsRoute,
@@ -402,7 +444,18 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   NewsRoute: NewsRoute,
   PollRoute: PollRoute,
+  ProfileUserIdRoute: ProfileUserIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
