@@ -16,8 +16,16 @@ import { Route as LeadershipRouteImport } from './routes/leadership'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminDashboardIndexRouteImport } from './routes/admin-dashboard.index'
+import { Route as AdminDashboardPollsRouteImport } from './routes/admin-dashboard.polls'
+import { Route as AdminDashboardNewsRouteImport } from './routes/admin-dashboard.news'
+import { Route as AdminDashboardModeratorsRouteImport } from './routes/admin-dashboard.moderators'
+import { Route as AdminDashboardMessagesRouteImport } from './routes/admin-dashboard.messages'
+import { Route as AdminDashboardMembersRouteImport } from './routes/admin-dashboard.members'
+import { Route as AdminDashboardEventsRouteImport } from './routes/admin-dashboard.events'
 
 const PollRoute = PollRouteImport.update({
   id: '/poll',
@@ -54,6 +62,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin-dashboard',
+  path: '/admin-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -64,10 +77,47 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashboardIndexRoute = AdminDashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminDashboardRoute,
+} as any)
+const AdminDashboardPollsRoute = AdminDashboardPollsRouteImport.update({
+  id: '/polls',
+  path: '/polls',
+  getParentRoute: () => AdminDashboardRoute,
+} as any)
+const AdminDashboardNewsRoute = AdminDashboardNewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => AdminDashboardRoute,
+} as any)
+const AdminDashboardModeratorsRoute =
+  AdminDashboardModeratorsRouteImport.update({
+    id: '/moderators',
+    path: '/moderators',
+    getParentRoute: () => AdminDashboardRoute,
+  } as any)
+const AdminDashboardMessagesRoute = AdminDashboardMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => AdminDashboardRoute,
+} as any)
+const AdminDashboardMembersRoute = AdminDashboardMembersRouteImport.update({
+  id: '/members',
+  path: '/members',
+  getParentRoute: () => AdminDashboardRoute,
+} as any)
+const AdminDashboardEventsRoute = AdminDashboardEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => AdminDashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin-dashboard': typeof AdminDashboardRouteWithChildren
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/join': typeof JoinRoute
@@ -75,6 +125,13 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/poll': typeof PollRoute
+  '/admin-dashboard/events': typeof AdminDashboardEventsRoute
+  '/admin-dashboard/members': typeof AdminDashboardMembersRoute
+  '/admin-dashboard/messages': typeof AdminDashboardMessagesRoute
+  '/admin-dashboard/moderators': typeof AdminDashboardModeratorsRoute
+  '/admin-dashboard/news': typeof AdminDashboardNewsRoute
+  '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
+  '/admin-dashboard/': typeof AdminDashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,11 +143,19 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/poll': typeof PollRoute
+  '/admin-dashboard/events': typeof AdminDashboardEventsRoute
+  '/admin-dashboard/members': typeof AdminDashboardMembersRoute
+  '/admin-dashboard/messages': typeof AdminDashboardMessagesRoute
+  '/admin-dashboard/moderators': typeof AdminDashboardModeratorsRoute
+  '/admin-dashboard/news': typeof AdminDashboardNewsRoute
+  '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
+  '/admin-dashboard': typeof AdminDashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin-dashboard': typeof AdminDashboardRouteWithChildren
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/join': typeof JoinRoute
@@ -98,12 +163,20 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/poll': typeof PollRoute
+  '/admin-dashboard/events': typeof AdminDashboardEventsRoute
+  '/admin-dashboard/members': typeof AdminDashboardMembersRoute
+  '/admin-dashboard/messages': typeof AdminDashboardMessagesRoute
+  '/admin-dashboard/moderators': typeof AdminDashboardModeratorsRoute
+  '/admin-dashboard/news': typeof AdminDashboardNewsRoute
+  '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
+  '/admin-dashboard/': typeof AdminDashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/admin-dashboard'
     | '/contact'
     | '/events'
     | '/join'
@@ -111,6 +184,13 @@ export interface FileRouteTypes {
     | '/login'
     | '/news'
     | '/poll'
+    | '/admin-dashboard/events'
+    | '/admin-dashboard/members'
+    | '/admin-dashboard/messages'
+    | '/admin-dashboard/moderators'
+    | '/admin-dashboard/news'
+    | '/admin-dashboard/polls'
+    | '/admin-dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,10 +202,18 @@ export interface FileRouteTypes {
     | '/login'
     | '/news'
     | '/poll'
+    | '/admin-dashboard/events'
+    | '/admin-dashboard/members'
+    | '/admin-dashboard/messages'
+    | '/admin-dashboard/moderators'
+    | '/admin-dashboard/news'
+    | '/admin-dashboard/polls'
+    | '/admin-dashboard'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/admin-dashboard'
     | '/contact'
     | '/events'
     | '/join'
@@ -133,11 +221,19 @@ export interface FileRouteTypes {
     | '/login'
     | '/news'
     | '/poll'
+    | '/admin-dashboard/events'
+    | '/admin-dashboard/members'
+    | '/admin-dashboard/messages'
+    | '/admin-dashboard/moderators'
+    | '/admin-dashboard/news'
+    | '/admin-dashboard/polls'
+    | '/admin-dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminDashboardRoute: typeof AdminDashboardRouteWithChildren
   ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
   JoinRoute: typeof JoinRoute
@@ -198,6 +294,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin-dashboard': {
+      id: '/admin-dashboard'
+      path: '/admin-dashboard'
+      fullPath: '/admin-dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -212,12 +315,86 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin-dashboard/': {
+      id: '/admin-dashboard/'
+      path: '/'
+      fullPath: '/admin-dashboard/'
+      preLoaderRoute: typeof AdminDashboardIndexRouteImport
+      parentRoute: typeof AdminDashboardRoute
+    }
+    '/admin-dashboard/polls': {
+      id: '/admin-dashboard/polls'
+      path: '/polls'
+      fullPath: '/admin-dashboard/polls'
+      preLoaderRoute: typeof AdminDashboardPollsRouteImport
+      parentRoute: typeof AdminDashboardRoute
+    }
+    '/admin-dashboard/news': {
+      id: '/admin-dashboard/news'
+      path: '/news'
+      fullPath: '/admin-dashboard/news'
+      preLoaderRoute: typeof AdminDashboardNewsRouteImport
+      parentRoute: typeof AdminDashboardRoute
+    }
+    '/admin-dashboard/moderators': {
+      id: '/admin-dashboard/moderators'
+      path: '/moderators'
+      fullPath: '/admin-dashboard/moderators'
+      preLoaderRoute: typeof AdminDashboardModeratorsRouteImport
+      parentRoute: typeof AdminDashboardRoute
+    }
+    '/admin-dashboard/messages': {
+      id: '/admin-dashboard/messages'
+      path: '/messages'
+      fullPath: '/admin-dashboard/messages'
+      preLoaderRoute: typeof AdminDashboardMessagesRouteImport
+      parentRoute: typeof AdminDashboardRoute
+    }
+    '/admin-dashboard/members': {
+      id: '/admin-dashboard/members'
+      path: '/members'
+      fullPath: '/admin-dashboard/members'
+      preLoaderRoute: typeof AdminDashboardMembersRouteImport
+      parentRoute: typeof AdminDashboardRoute
+    }
+    '/admin-dashboard/events': {
+      id: '/admin-dashboard/events'
+      path: '/events'
+      fullPath: '/admin-dashboard/events'
+      preLoaderRoute: typeof AdminDashboardEventsRouteImport
+      parentRoute: typeof AdminDashboardRoute
+    }
   }
 }
+
+interface AdminDashboardRouteChildren {
+  AdminDashboardEventsRoute: typeof AdminDashboardEventsRoute
+  AdminDashboardMembersRoute: typeof AdminDashboardMembersRoute
+  AdminDashboardMessagesRoute: typeof AdminDashboardMessagesRoute
+  AdminDashboardModeratorsRoute: typeof AdminDashboardModeratorsRoute
+  AdminDashboardNewsRoute: typeof AdminDashboardNewsRoute
+  AdminDashboardPollsRoute: typeof AdminDashboardPollsRoute
+  AdminDashboardIndexRoute: typeof AdminDashboardIndexRoute
+}
+
+const AdminDashboardRouteChildren: AdminDashboardRouteChildren = {
+  AdminDashboardEventsRoute: AdminDashboardEventsRoute,
+  AdminDashboardMembersRoute: AdminDashboardMembersRoute,
+  AdminDashboardMessagesRoute: AdminDashboardMessagesRoute,
+  AdminDashboardModeratorsRoute: AdminDashboardModeratorsRoute,
+  AdminDashboardNewsRoute: AdminDashboardNewsRoute,
+  AdminDashboardPollsRoute: AdminDashboardPollsRoute,
+  AdminDashboardIndexRoute: AdminDashboardIndexRoute,
+}
+
+const AdminDashboardRouteWithChildren = AdminDashboardRoute._addFileChildren(
+  AdminDashboardRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminDashboardRoute: AdminDashboardRouteWithChildren,
   ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
   JoinRoute: JoinRoute,
