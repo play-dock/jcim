@@ -153,7 +153,21 @@ function JoinPage() {
   );
 }
 
-function Field({ id, label, value, onChange, type = "text", required }: any) {
+function Field({
+  id,
+  label,
+  value,
+  onChange,
+  type = "text",
+  required,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+  required?: boolean;
+}) {
   return (
     <div>
       <Label htmlFor={id}>{label}</Label>
