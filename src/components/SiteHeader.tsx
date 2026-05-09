@@ -67,6 +67,11 @@ export function SiteHeader() {
                   </Link>
                 </Button>
               )}
+              <Button asChild size="sm" variant="ghost">
+                <Link to="/profile/$userId" params={{ userId: user.id }}>
+                  <User className="size-4 mr-1" /> প্রোফাইল
+                </Link>
+              </Button>
               <Button size="sm" variant="ghost" onClick={() => signOut()}>
                 <LogOut className="size-4 mr-1" /> লগআউট
               </Button>
