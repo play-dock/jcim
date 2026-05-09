@@ -20,6 +20,7 @@ import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminDashboardIndexRouteImport } from './routes/admin-dashboard.index'
+import { Route as ProfileEditRouteImport } from './routes/profile.edit'
 import { Route as ProfileUserIdRouteImport } from './routes/profile.$userId'
 import { Route as AdminDashboardPollsRouteImport } from './routes/admin-dashboard.polls'
 import { Route as AdminDashboardNewsRouteImport } from './routes/admin-dashboard.news'
@@ -84,6 +85,11 @@ const AdminDashboardIndexRoute = AdminDashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminDashboardRoute,
 } as any)
+const ProfileEditRoute = ProfileEditRouteImport.update({
+  id: '/profile/edit',
+  path: '/profile/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileUserIdRoute = ProfileUserIdRouteImport.update({
   id: '/profile/$userId',
   path: '/profile/$userId',
@@ -146,6 +152,7 @@ export interface FileRoutesByFullPath {
   '/admin-dashboard/news': typeof AdminDashboardNewsRoute
   '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
   '/profile/$userId': typeof ProfileUserIdRoute
+  '/profile/edit': typeof ProfileEditRoute
   '/admin-dashboard/': typeof AdminDashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/admin-dashboard/news': typeof AdminDashboardNewsRoute
   '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
   '/profile/$userId': typeof ProfileUserIdRoute
+  '/profile/edit': typeof ProfileEditRoute
   '/admin-dashboard': typeof AdminDashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/admin-dashboard/news': typeof AdminDashboardNewsRoute
   '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
   '/profile/$userId': typeof ProfileUserIdRoute
+  '/profile/edit': typeof ProfileEditRoute
   '/admin-dashboard/': typeof AdminDashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -211,6 +220,7 @@ export interface FileRouteTypes {
     | '/admin-dashboard/news'
     | '/admin-dashboard/polls'
     | '/profile/$userId'
+    | '/profile/edit'
     | '/admin-dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -231,6 +241,7 @@ export interface FileRouteTypes {
     | '/admin-dashboard/news'
     | '/admin-dashboard/polls'
     | '/profile/$userId'
+    | '/profile/edit'
     | '/admin-dashboard'
   id:
     | '__root__'
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/admin-dashboard/news'
     | '/admin-dashboard/polls'
     | '/profile/$userId'
+    | '/profile/edit'
     | '/admin-dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -267,6 +279,7 @@ export interface RootRouteChildren {
   NewsRoute: typeof NewsRoute
   PollRoute: typeof PollRoute
   ProfileUserIdRoute: typeof ProfileUserIdRoute
+  ProfileEditRoute: typeof ProfileEditRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -347,6 +360,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin-dashboard/'
       preLoaderRoute: typeof AdminDashboardIndexRouteImport
       parentRoute: typeof AdminDashboardRoute
+    }
+    '/profile/edit': {
+      id: '/profile/edit'
+      path: '/profile/edit'
+      fullPath: '/profile/edit'
+      preLoaderRoute: typeof ProfileEditRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/profile/$userId': {
       id: '/profile/$userId'
@@ -445,6 +465,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewsRoute: NewsRoute,
   PollRoute: PollRoute,
   ProfileUserIdRoute: ProfileUserIdRoute,
+  ProfileEditRoute: ProfileEditRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
