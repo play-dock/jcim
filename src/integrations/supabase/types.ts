@@ -14,16 +14,322 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          read: boolean
+          subject: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          read?: boolean
+          subject?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          read?: boolean
+          subject?: string | null
+        }
+        Relationships: []
+      }
+      events: {
+        Row: {
+          author_id: string | null
+          cover_image: string | null
+          created_at: string
+          description: string
+          event_date: string
+          id: string
+          location: string | null
+          title: string
+        }
+        Insert: {
+          author_id?: string | null
+          cover_image?: string | null
+          created_at?: string
+          description: string
+          event_date: string
+          id?: string
+          location?: string | null
+          title: string
+        }
+        Update: {
+          author_id?: string | null
+          cover_image?: string | null
+          created_at?: string
+          description?: string
+          event_date?: string
+          id?: string
+          location?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      members: {
+        Row: {
+          created_at: string
+          district: string
+          education: string | null
+          email: string | null
+          facebook_url: string | null
+          full_name: string
+          id: string
+          nid: string | null
+          phone: string
+          profession: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          statement: string | null
+          status: Database["public"]["Enums"]["member_status"]
+          thana: string
+          twitter_url: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          district: string
+          education?: string | null
+          email?: string | null
+          facebook_url?: string | null
+          full_name: string
+          id?: string
+          nid?: string | null
+          phone: string
+          profession: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          statement?: string | null
+          status?: Database["public"]["Enums"]["member_status"]
+          thana: string
+          twitter_url?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          district?: string
+          education?: string | null
+          email?: string | null
+          facebook_url?: string | null
+          full_name?: string
+          id?: string
+          nid?: string | null
+          phone?: string
+          profession?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          statement?: string | null
+          status?: Database["public"]["Enums"]["member_status"]
+          thana?: string
+          twitter_url?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      moderator_permissions: {
+        Row: {
+          granted_at: string
+          id: string
+          permission: Database["public"]["Enums"]["mod_permission"]
+          user_id: string
+        }
+        Insert: {
+          granted_at?: string
+          id?: string
+          permission: Database["public"]["Enums"]["mod_permission"]
+          user_id: string
+        }
+        Update: {
+          granted_at?: string
+          id?: string
+          permission?: Database["public"]["Enums"]["mod_permission"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      news: {
+        Row: {
+          author_id: string | null
+          content: string
+          cover_image: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          published: boolean
+          slug: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          content: string
+          cover_image?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          slug?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          content?: string
+          cover_image?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          slug?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      poll_votes: {
+        Row: {
+          created_at: string
+          id: string
+          option_index: number
+          poll_id: string
+          user_id: string | null
+          voter_fingerprint: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          option_index: number
+          poll_id: string
+          user_id?: string | null
+          voter_fingerprint?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          option_index?: number
+          poll_id?: string
+          user_id?: string | null
+          voter_fingerprint?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "poll_votes_poll_id_fkey"
+            columns: ["poll_id"]
+            isOneToOne: false
+            referencedRelation: "polls"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      polls: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          options: Json
+          question: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          options: Json
+          question: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          options?: Json
+          question?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_permission: {
+        Args: {
+          _perm: Database["public"]["Enums"]["mod_permission"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_staff: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "super_admin" | "moderator" | "user"
+      member_status: "pending" | "approved" | "rejected"
+      mod_permission:
+        | "manage_news"
+        | "manage_events"
+        | "manage_members"
+        | "approve_registrations"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +456,15 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["super_admin", "moderator", "user"],
+      member_status: ["pending", "approved", "rejected"],
+      mod_permission: [
+        "manage_news",
+        "manage_events",
+        "manage_members",
+        "approve_registrations",
+      ],
+    },
   },
 } as const
