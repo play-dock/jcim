@@ -84,7 +84,7 @@ function ModeratorsAdmin() {
 
   const togglePerm = async (userId: string, perm: string, has: boolean) => {
     if (has) {
-      await supabase.from("moderator_permissions").delete().eq("user_id", userId).eq("permission", perm);
+      await supabase.from("moderator_permissions").delete().eq("user_id", userId).eq("permission", perm as any);
     } else {
       await supabase.from("moderator_permissions").insert({ user_id: userId, permission: perm as any });
     }
