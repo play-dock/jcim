@@ -14,6 +14,7 @@ import { AuthProvider } from "@/lib/auth-context";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { BackgroundMusic } from "@/components/BackgroundMusic";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -114,6 +115,7 @@ function ChromeLayout() {
       </main>
       <SiteFooter />
       <WhatsAppFloat />
+      <BackgroundMusic />
     </div>
   );
 }
