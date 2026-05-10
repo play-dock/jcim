@@ -115,6 +115,7 @@ function ChromeLayout() {
       </main>
       <SiteFooter />
       <WhatsAppFloat />
+      <BackgroundMusic />
     </div>
   );
 }
