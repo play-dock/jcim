@@ -29,8 +29,9 @@ Apply to all three environments: Production, Preview, Development.
 ## How it works
 
 - `vite build` produces `dist/client/` (static assets) + `dist/server/index.js` (Web Fetch handler).
-- `api/ssr.ts` is a Vercel Edge Function that imports the built handler and forwards every request to it.
-- `vercel.json` rewrites all paths to `/api/ssr` so the edge function handles SSR + server functions + API routes.
+- `api/ssr.ts` is a Vercel **Node.js Serverless Function** that imports the built handler and forwards every request to it.
+- Node runtime is required (not Edge) because the bundle uses `node:stream` / `node:stream/web` which Edge runtime does not support.
+- `vercel.json` rewrites all paths to `/api/ssr` so the function handles SSR + server functions + API routes.
 
 ## Custom Domain
 
