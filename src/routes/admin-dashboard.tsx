@@ -2,7 +2,7 @@ import { createFileRoute, Outlet, Link, redirect, useRouterState } from "@tansta
 import { useAuth } from "@/lib/auth-context";
 import {
   LayoutDashboard, Users, Newspaper, Calendar, ShieldCheck, MessageSquare,
-  LogOut, Home, Vote, Crown,
+  LogOut, Home, Vote, Crown, Music,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -61,6 +61,7 @@ function AdminLayout() {
     { to: "/admin-dashboard/events", label: "ইভেন্ট", icon: Calendar, show: hasPermission("manage_events") },
     { to: "/admin-dashboard/polls", label: "জনমত", icon: Vote, show: isSuperAdmin },
     { to: "/admin-dashboard/messages", label: "বার্তা", icon: MessageSquare, show: true },
+    { to: "/admin-dashboard/music", label: "মিউজিক", icon: Music, show: isStaff },
     { to: "/admin-dashboard/moderators", label: "মডারেটর", icon: ShieldCheck, show: isSuperAdmin },
   ];
 

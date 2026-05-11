@@ -24,6 +24,7 @@ import { Route as ProfileEditRouteImport } from './routes/profile.edit'
 import { Route as ProfileUserIdRouteImport } from './routes/profile.$userId'
 import { Route as AdminDashboardPollsRouteImport } from './routes/admin-dashboard.polls'
 import { Route as AdminDashboardNewsRouteImport } from './routes/admin-dashboard.news'
+import { Route as AdminDashboardMusicRouteImport } from './routes/admin-dashboard.music'
 import { Route as AdminDashboardModeratorsRouteImport } from './routes/admin-dashboard.moderators'
 import { Route as AdminDashboardMessagesRouteImport } from './routes/admin-dashboard.messages'
 import { Route as AdminDashboardMembersRouteImport } from './routes/admin-dashboard.members'
@@ -105,6 +106,11 @@ const AdminDashboardNewsRoute = AdminDashboardNewsRouteImport.update({
   path: '/news',
   getParentRoute: () => AdminDashboardRoute,
 } as any)
+const AdminDashboardMusicRoute = AdminDashboardMusicRouteImport.update({
+  id: '/music',
+  path: '/music',
+  getParentRoute: () => AdminDashboardRoute,
+} as any)
 const AdminDashboardModeratorsRoute =
   AdminDashboardModeratorsRouteImport.update({
     id: '/moderators',
@@ -149,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/admin-dashboard/members': typeof AdminDashboardMembersRoute
   '/admin-dashboard/messages': typeof AdminDashboardMessagesRoute
   '/admin-dashboard/moderators': typeof AdminDashboardModeratorsRoute
+  '/admin-dashboard/music': typeof AdminDashboardMusicRoute
   '/admin-dashboard/news': typeof AdminDashboardNewsRoute
   '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
   '/profile/$userId': typeof ProfileUserIdRoute
@@ -170,6 +177,7 @@ export interface FileRoutesByTo {
   '/admin-dashboard/members': typeof AdminDashboardMembersRoute
   '/admin-dashboard/messages': typeof AdminDashboardMessagesRoute
   '/admin-dashboard/moderators': typeof AdminDashboardModeratorsRoute
+  '/admin-dashboard/music': typeof AdminDashboardMusicRoute
   '/admin-dashboard/news': typeof AdminDashboardNewsRoute
   '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
   '/profile/$userId': typeof ProfileUserIdRoute
@@ -193,6 +201,7 @@ export interface FileRoutesById {
   '/admin-dashboard/members': typeof AdminDashboardMembersRoute
   '/admin-dashboard/messages': typeof AdminDashboardMessagesRoute
   '/admin-dashboard/moderators': typeof AdminDashboardModeratorsRoute
+  '/admin-dashboard/music': typeof AdminDashboardMusicRoute
   '/admin-dashboard/news': typeof AdminDashboardNewsRoute
   '/admin-dashboard/polls': typeof AdminDashboardPollsRoute
   '/profile/$userId': typeof ProfileUserIdRoute
@@ -217,6 +226,7 @@ export interface FileRouteTypes {
     | '/admin-dashboard/members'
     | '/admin-dashboard/messages'
     | '/admin-dashboard/moderators'
+    | '/admin-dashboard/music'
     | '/admin-dashboard/news'
     | '/admin-dashboard/polls'
     | '/profile/$userId'
@@ -238,6 +248,7 @@ export interface FileRouteTypes {
     | '/admin-dashboard/members'
     | '/admin-dashboard/messages'
     | '/admin-dashboard/moderators'
+    | '/admin-dashboard/music'
     | '/admin-dashboard/news'
     | '/admin-dashboard/polls'
     | '/profile/$userId'
@@ -260,6 +271,7 @@ export interface FileRouteTypes {
     | '/admin-dashboard/members'
     | '/admin-dashboard/messages'
     | '/admin-dashboard/moderators'
+    | '/admin-dashboard/music'
     | '/admin-dashboard/news'
     | '/admin-dashboard/polls'
     | '/profile/$userId'
@@ -389,6 +401,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminDashboardNewsRouteImport
       parentRoute: typeof AdminDashboardRoute
     }
+    '/admin-dashboard/music': {
+      id: '/admin-dashboard/music'
+      path: '/music'
+      fullPath: '/admin-dashboard/music'
+      preLoaderRoute: typeof AdminDashboardMusicRouteImport
+      parentRoute: typeof AdminDashboardRoute
+    }
     '/admin-dashboard/moderators': {
       id: '/admin-dashboard/moderators'
       path: '/moderators'
@@ -433,6 +452,7 @@ interface AdminDashboardRouteChildren {
   AdminDashboardMembersRoute: typeof AdminDashboardMembersRoute
   AdminDashboardMessagesRoute: typeof AdminDashboardMessagesRoute
   AdminDashboardModeratorsRoute: typeof AdminDashboardModeratorsRoute
+  AdminDashboardMusicRoute: typeof AdminDashboardMusicRoute
   AdminDashboardNewsRoute: typeof AdminDashboardNewsRoute
   AdminDashboardPollsRoute: typeof AdminDashboardPollsRoute
   AdminDashboardIndexRoute: typeof AdminDashboardIndexRoute
@@ -444,6 +464,7 @@ const AdminDashboardRouteChildren: AdminDashboardRouteChildren = {
   AdminDashboardMembersRoute: AdminDashboardMembersRoute,
   AdminDashboardMessagesRoute: AdminDashboardMessagesRoute,
   AdminDashboardModeratorsRoute: AdminDashboardModeratorsRoute,
+  AdminDashboardMusicRoute: AdminDashboardMusicRoute,
   AdminDashboardNewsRoute: AdminDashboardNewsRoute,
   AdminDashboardPollsRoute: AdminDashboardPollsRoute,
   AdminDashboardIndexRoute: AdminDashboardIndexRoute,
